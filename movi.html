@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Movie Reviews!</title>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+    <input type="text" id="movie-title">
+    <select name="rating" id="rating">
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+    </select>
+    <button>Submit</button>
+    <br />
+    <br />
+    <br />
+    <div></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            console.log("Welcome to the Movie Review HTML page.");
+
+            // Click event for adding entries
+            $('button').on('click', function () {
+                let title = $("#movie-title").val();
+                let rating = $("#rating").val();
+
+                if (title.length < 2) {
+                    alert("Movie title must have at least 2 characters.");
+                    return;
+                }
+
+                let entryHtml = "<div class='entry'><p>Title: " + title + ", Rating: " + rating + "</p><button class='removeEntryBtn'>Remove</button></div>";
+                let entryContainer = $(entryHtml);
+
+                $('div').append(entryContainer);
+
+                $("#movie-title").val("");
+                $("#rating").val("");
+            });
+
+            // Click event for removing entries
+            $(document).on('click', '.removeEntryBtn', function () {
+                // Remove the specific entry container
+                $(this).closest(".entry").remove();
+            });
+        });
+    </script>
+</body>
+</html>
